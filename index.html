@@ -10,9 +10,20 @@
                 .controller('AcrobatController', function($scope){
 //      the argument $scope has to be called in this way
                     // alternate way $scope.acrobatName= 'Michaelz'
-                    $scope.acrobats=['Jordan', 'Edward', 'Mitch']
+                    $scope.acrobats=['Jordan', 'Edward', 'Mitch'];
+                    // stick each acrobat in the array at the bottom
+                    $scope.addAcrobat= function() {
+                        $scope.acrobats.push($scope.acrobatName);
+                        $scope.acrobatName = '';
+//                        set the acrobatName to be blank
+                    }
+                    scope.removeLastAcrobat = function() {
+                        $scope.acrobats.pop
+                    }
+
 
                 })
+        //add acrobats to the number lis
 
 //        angular.module to create an App. When creating a module you need an array to hold the module.
 
@@ -20,16 +31,21 @@
 </head>
 <body ng-controller="AcrobatController">
 <!--everything inside the body is under the controllers directive.-->
-    <form>
+    <form ng-submit ="addAcrobat()">
         <input type="text" ng-model="acrobatName">
         <!--secretly this is really $scope.acrobatName-->
-        <input type="text" ng-model="acrobatAge">
+        <button type ="submit"> Sign Me Up</button>
+        <a href="#" ng-click="removeLastAcrobat()"> Remove Last Acrobat</a>
 
         <!--secretly this is really $scope.acrobatAge-->
     </form>
     <div>
         <!--we want whatever we type up in the input box to show up here.-->
-        <h2>{{acrobatName}}{{acrobatAge}}</h2>
+        <h2>Member List</h2>
+        <ul>
+            <li ng-repeat="acrobat in acrobats"> {{acrobat}}</li>
+        </ul>
+
 
     </div>
 
