@@ -10,17 +10,22 @@
                 .controller('AcrobatController', function($scope){
 //      the argument $scope has to be called in this way
                     // alternate way $scope.acrobatName= 'Michaelz'
-                    $scope.acrobats=['Jordan', 'Edward', 'Mitch'];
+                    $scope.acrobats=[
+                        {name: 'Jordan', act:'Acrobat'},
+                        {name: 'Cameron', act:"Singing"}
+
+                    ];
                     // stick each acrobat in the array at the bottom
+                    $scope.acrobat= {};
 
                     $scope.addAcrobat= function() {
-                        $scope.acrobats.push($scope.acrobatName);
-                        $scope.acrobatName = '';
+                        $scope.acrobats.push($scope.acrobat);
+                        $scope.acrobat = [];
 //                        set the acrobatName to be blank
                     }
                     scope.removeLastAcrobat = function() {
                         $scope.acrobats.pop();
-                    }
+                    };
 
 
                 })
@@ -33,8 +38,8 @@
 <body ng-controller="AcrobatController">
 <!--everything inside the body is under the controllers directive.-->
     <form ng-submit ="addAcrobat()">
-        <input type="text" ng-model="acrobatName" placeholder="enter your name" >
-        <input type="text" ng-model="acrobatAct" placeholder="What is your act">
+        <input type="text" ng-model="acrobat.name" placeholder="Enter your name" >
+        <input type="text" ng-model="acrobat.act" placeholder="What is your act">
         <!--secretly this is really $scope.acrobatName-->
         <button type ="submit"> Sign Me Up</button>
         <a href="#" ng-click="removeLastAcrobat()"> Remove Last Acrobat</a>
@@ -46,6 +51,7 @@
         <h2>Member List</h2>
         <ul>
             <li ng-repeat="acrobat in acrobats by $index"> {{acrobat}}</li>
+
         </ul>
 
 
