@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<!--ng-app tells the browser to know this is an angular app-->
+<head>
+    <meta charset="UTF-8">
+    <title> League of Acrobats </title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.min.js"></script>
+    <script>
+        angular.module('acrobatApp',[])
+                .controller('AcrobatController', function($scope){
+//      the argument $scope has to be called in this way
+                    // alternate way $scope.acrobatName= 'Michaelz'
+                    $scope.acrobats=['Jordan', 'Edward', 'Mitch']
+
+                })
+
+//        angular.module to create an App. When creating a module you need an array to hold the module.
+
+    </script>
+</head>
+<body ng-controller="AcrobatController">
+<!--everything inside the body is under the controllers directive.-->
+    <form>
+        <input type="text" ng-model="acrobatName">
+        <!--secretly this is really $scope.acrobatName-->
+        <input type="text" ng-model="acrobatAge">
+
+        <!--secretly this is really $scope.acrobatAge-->
+    </form>
+    <div>
+        <!--we want whatever we type up in the input box to show up here.-->
+        <h2>{{acrobatName}}{{acrobatAge}}</h2>
+
+    </div>
+
+</body>
+</html>
